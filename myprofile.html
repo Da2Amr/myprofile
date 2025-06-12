@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Portfolio and Articles</title>
+  <style>
+    /* Reset and base */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: #f9fafb;
+      color: #222;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      scroll-behavior: smooth;
+    }
+    a {
+      color: #4f46e5;
+      text-decoration: none;
+    }
+    a:hover,
+    a:focus {
+      text-decoration: underline;
+      outline: none;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 16px;
+    }
+
+    /* Header */
+    header {
+      background: #3730a3;
+      color: white;
+      padding: 24px 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 8px rgb(55 48 163 / 0.2);
+    }
+    header .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo {
+      font-weight: 900;
+      font-size: 1.75rem;
+      letter-spacing: 0.1em;
+      user-select: none;
+    }
+    nav a {
+      color: white;
+      margin-left: 28px;
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 8px 0;
+      display: inline-block;
+      position: relative;
+    }
+    nav a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      background-color: #8b5cf6; /* violet-500 */
+      left: 0;
+      bottom: 0;
+      transition: width 0.3s ease;
+      border-radius: 1px;
+    }
+    nav a:hover::after,
+    nav a:focus::after {
+      width: 100%;
+      outline: none;
+    }
+
+    /* Hero Section */
+    .hero {
+      text-align: center;
+      margin: 48px 0;
+      padding: 0 16px;
+    }
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: 900;
+      margin-bottom: 12px;
+      color: #3730a3;
+    }
+    .hero p {
+      font-size: 1.25rem;
+      max-width: 600px;
+      margin: 0 auto;
+      color: #6b7280; /* gray-500 */
+    }
+
+    /* Portfolio Section */
+    section.portfolio {
+      margin: 72px 0;
+    }
+    section.portfolio h2 {
+      font-size: 2.25rem;
+      font-weight: 900;
+      margin-bottom: 32px;
+      color: #3730a3;
+      text-align: center;
+    }
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+      gap: 32px;
+    }
+    .portfolio-item {
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+    }
+    .portfolio-item:hover,
+    .portfolio-item:focus-within {
+      transform: translateY(-10px);
+      box-shadow: 0 12px 40px rgba(115,99,237,0.3);
+      outline: none;
+    }
+    .portfolio-image {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      border-bottom: 1px solid #e5e7eb;
+    }
+    .portfolio-content {
+      padding: 20px 24px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .portfolio-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: #4c1d95; /* purple-900 */
+    }
+    .portfolio-description {
+      flex-grow: 1;
+      font-size: 1rem;
+      color: #6b7280;
+      margin-bottom: 24px;
+    }
+    .portfolio-link {
+      align-self: flex-start;
+      font-weight: 600;
+      color: #4f46e5;
+      font-size: 1rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      user-select: none;
+      transition: color 0.3s ease;
+    }
+    .portfolio-link svg {
+      width: 18px;
+      height: 18px;
+      transition: transform 0.3s ease;
+    }
+    .portfolio-link:hover svg,
+    .portfolio-link:focus svg {
+      transform: translateX(4px);
+      outline: none;
+    }
+
+    /* Articles Section */
+    section.articles {
+      margin: 72px 0;
+    }
+    section.articles h2 {
+      font-size: 2.25rem;
+      font-weight: 900;
+      margin-bottom: 32px;
+      color: #3730a3;
+      text-align: center;
+    }
+    .articles-list {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+    article.article-preview {
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+      padding: 24px 32px;
+      transition: box-shadow 0.3s ease;
+      cursor: pointer;
+    }
+    article.article-preview:hover,
+    article.article-preview:focus-within {
+      box-shadow: 0 12px 40px rgba(115,99,237,0.3);
+      outline: none;
+    }
+    article.article-preview h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+      color: #4c1d95;
+    }
+    article.article-preview p {
+      font-size: 1rem;
+      line-height: 1.5;
+      color: #6b7280;
+      margin-bottom: 16px;
+    }
+    article.article-preview a.read-more {
+      font-weight: 600;
+      color: #4f46e5;
+      font-size: 1rem;
+      user-select: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    article.article-preview a.read-more svg {
+      width: 18px;
+      height: 18px;
+      transition: transform 0.3s ease;
+    }
+    article.article-preview a.read-more:hover svg,
+    article.article-preview a.read-more:focus svg {
+      transform: translateX(4px);
+      outline: none;
+    }
+
+    /* Footer */
+    footer {
+      background: #3730a3;
+      color: white;
+      text-align: center;
+      padding: 32px 16px;
+      font-size: 0.9rem;
+      user-select: none;
+      margin-top: 80px;
+    }
+
+    /* Responsive */
+    @media (max-width: 640px) {
+      nav a {
+        margin-left: 16px;
+        font-size: 0.9rem;
+      }
+      .hero h1 {
+        font-size: 2rem;
+      }
+      section.portfolio {
+        margin: 48px 0;
+      }
+      section.articles {
+        margin: 48px 0;
+      }
+      .portfolio-content {
+        padding: 16px 20px;
+      }
+      article.article-preview {
+        padding: 20px 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="logo" tabindex="0" aria-label="Your name or brand logo">YourName</div>
+      <nav aria-label="Primary navigation">
+        <a href="#portfolio" tabindex="0">Portfolio</a>
+        <a href="#articles" tabindex="0">Articles</a>
+        <a href="#contact" tabindex="0">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" aria-label="Introduction">
+      <h1>Hello, I'm YourName</h1>
+      <p>Creative professional specializing in design and development. Welcome to my portfolio and blog.</p>
+    </section>
+
+    <section id="portfolio" class="portfolio" aria-label="Portfolio projects">
+      <h2>My Portfolio</h2>
+      <div class="portfolio-grid">
+        <article class="portfolio-item" tabindex="0" aria-label="Project: Modern Website Design">
+          <img class="portfolio-image" src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/8ffb2335-c833-4cdd-8a14-664855e3f5bf.png" alt="Screenshot of Modern Website Design project"/>
+          <div class="portfolio-content">
+            <h3 class="portfolio-title">Modern Website Design</h3>
+            <p class="portfolio-description">A sleek, responsive website built with modern CSS and JavaScript to showcase creative works.</p>
+            <a href="https://example.com/projects/modern-website-design" target="_blank" rel="noopener" class="portfolio-link" tabindex="0" aria-label="View details of Modern Website Design project">
+              View Project
+              <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14M12 5l7 7-7 7"></path></svg>
+            </a>
+          </div>
+        </article>
+
+        <article class="portfolio-item" tabindex="0" aria-label="Project: Mobile App UI/UX">
+          <img class="portfolio-image" src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/cb76ac7d-d37f-4a85-bb79-8bbe49f71369.png" alt="Screenshot of Mobile App UI/UX project"/>
+          <div class="portfolio-content">
+            <h3 class="portfolio-title">Mobile App UI/UX</h3>
+            <p class="portfolio-description">Designed an intuitive and aesthetically pleasing mobile app interface focused on user engagement.</p>
+            <a href="https://example.com/projects/mobile-app-uiux" target="_blank" rel="noopener" class="portfolio-link" tabindex="0" aria-label="View details of Mobile App UI/UX project">
+              View Project
+              <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14M12 5l7 7-7 7"></path></svg>
+            </a>
+          </div>
+        </article>
+
+        <article class="portfolio-item" tabindex="0" aria-label="Project: Branding and Identity">
+          <img class="portfolio-image" src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/38f36e2d-ddfd-4eb4-a413-25547795505a.png" alt="Visual design for Branding and Identity project"/>
+          <div class="portfolio-content">
+            <h3 class="portfolio-title">Branding and Identity</h3>
+            <p class="portfolio-description">Developed a cohesive brand identity for a startup, including logo, colors, and collateral materials.</p>
+            <a href="https://example.com/projects/branding-identity" target="_blank" rel="noopener" class="portfolio-link" tabindex="0" aria-label="View details of Branding and Identity project">
+              View Project
+              <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14M12 5l7 7-7 7"></path></svg>
+            </a>
+          </div>
+        </article>
+        
+        <!-- New Portfolio Items -->
+
+        <article class="portfolio-item" tabindex="0" aria-label="Project: Mobile App Development">
+          <img class="portfolio-image" src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/f5b9f3fe-9a4f-4497-b518-c7ce28e584aa.png" alt="Screenshot of Mobile App Development project"/>
+          <div class="portfolio-content">
+            <h3 class="portfolio-title">Mobile App Development</h3>
+            <p class="portfolio-description">Built highly-responsive mobile applications optimized for a smooth user experience across platforms.</p>
+            <a href="https://example.com/projects/mobile-app-development" target="_blank" rel="noopener" class="portfolio-link" tabindex="0" aria-label="View details of Mobile App Development project">
+              View Project
+              <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14M12 5l7 7-7 7"></path></svg>
+            </a>
+          </div>
+        </article>
+
+        <article class="portfolio-item" tabindex="0" aria-label="Project: Social Media Campaign">
+          <img class="portfolio-image" src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/fd838fe1-5a7e-4f41-bdcc-c9397c6f7a09.png" alt="Visual design for Social Media Campaign project"/>
+          <div class="portfolio-content">
+            <h3 class="portfolio-title">Social Media Campaign</h3>
+            <p class="portfolio-description">Created engaging and effective social media campaigns driving brand awareness and user engagement.</p>
+            <a href="https://example.com/projects/social-media-campaign" target="_blank" rel="noopener" class="portfolio-link" tabindex="0" aria-label="View details of Social Media Campaign project">
+              View Project
+              <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14M12 5l7 7-7 7"></path></svg>
+            </a>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <section id="articles" class="articles" aria-label="Articles and blog posts">
+      <h2>Latest Articles</h2>
+      <div class="articles-list">
+        <article class="article-preview" tabindex="0" aria-label="Article: Design Trends 2025">
+          <h3>Design Trends 2025: What to Expect</h3>
+          <p>Explore the upcoming design trends that will shape digital experiences in the near future, from minimalism to immersive interactivity.</p>
+          <a href="https://example.com/articles/design-trends-2025" target="_blank" rel="noopener" class="read-more" tabindex="0" aria-label="Read full article: Design Trends 2025: What to Expect">
+            Read More
+            <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14M12 5l7 7-7 7"></path></svg>
+          </a>
+        </article>
+        <article class="article-preview" tabindex="0" aria-label="Article: Building a Responsive Portfolio">
+          <h3>Building a Responsive Portfolio Website</h3>
+          <p>A step-by-step guide to crafting a responsive and visually pleasing portfolio site that looks great on all devices.</p>
+          <a href="https://example.com/articles/building-responsive-portfolio" target="_blank" rel="noopener" class="read-more" tabindex="0" aria-label="Read full article: Building a Responsive Portfolio">
+            Read More
+            <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14M12 5l7 7-7 7"></path></svg>
+          </a>
+        </article>
+        <article class="article-preview" tabindex="0" aria-label="Article: Effective UI/UX Practices">
+          <h3>Effective UI/UX Practices for Beginners</h3>
+          <p>Learn key user interface and user experience principles to enhance the usability and appeal of your digital projects.</p>
+          <a href="https://example.com/articles/effective-ui-ux" target="_blank" rel="noopener" class="read-more" tabindex="0" aria-label="Read full article: Effective UI/UX Practices for Beginners">
+            Read More
+            <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14M12 5l7 7-7 7"></path></svg>
+          </a>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 YourName. All rights reserved.</p>
+    <p>Contact: <a href="mailto:your.email@example.com">your.email@example.com</a> | 
+       <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener" aria-label="Your LinkedIn profile">LinkedIn</a> | 
+       <a href="https://twitter.com/yourprofile" target="_blank" rel="noopener" aria-label="Your Twitter profile">Twitter</a></p>
+  </footer>
+</body>
+</html>
+
