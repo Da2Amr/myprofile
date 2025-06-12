@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Portfolio and Articles</title>
+    <link rel="stylesheet" href="../style.css" />
+
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <div class="logo" tabindex="0" aria-label="Your name or brand logo">YourName</div>
+        <nav aria-label="Primary navigation">
+          <a href="#portfolio" tabindex="0">Portfolio</a>
+          <a href="#articles" tabindex="0">Articles</a>
+          <a href="#contact" tabindex="0">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero" aria-label="Introduction">
+        <h1>Hello, I'm YourName</h1>
+        <p>Creative professional specializing in design and development. Welcome to my portfolio and blog.</p>
+      </section>
+
+      <section id="portfolio" class="portfolio" aria-label="Portfolio projects">
+        <h2>My Portfolio</h2>
+        <div class="portfolio-grid">
+          <article class="portfolio-item" tabindex="0" aria-label="Project: Modern Website Design">
+            <img class="portfolio-image" src="https://placehold.co/600x400" alt="Screenshot of project" />
+            <div class="portfolio-content">
+              <h3 class="portfolio-title">Modern Website Design</h3>
+              <p class="portfolio-description">A sleek, responsive website built with modern CSS and JavaScript to showcase creative works.</p>
+              <a href="https://example.com" target="_blank" class="portfolio-link">
+                View Project
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16">
+                  <path fill="currentColor" d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42 9.3-9.29H14V3z" />
+                </svg>
+              </a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="articles" class="articles" aria-label="Articles section">
+        <h2>Latest Articles</h2>
+        <div class="articles-list">
+          <article>
+            <h3><a href="#">Understanding CSS Grid</a></h3>
+            <p>A deep dive into modern CSS layout with real-world examples.</p>
+          </article>
+          <article>
+            <h3><a href="#">JavaScript Async/Await Explained</a></h3>
+            <p>Master asynchronous JavaScript with practical use cases and examples.</p>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      &copy; 2025 YourName. All rights reserved.
+    </footer>
+
+    <!-- <script src="script.js"></script> -->
+  </body>
+  <script src="script.js"></script>
+</html>
