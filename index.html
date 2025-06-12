@@ -2,82 +2,60 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>My Portfolio</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Portfolio and Articles</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <header>
-    <nav>
-      <a href="#" class="logo">My Portfolio</a>
-      <ul class="nav-links">
-        <li><a href="#about">About</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#articles">Articles</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
+    <div class="container">
+      <div class="logo" tabindex="0" aria-label="Your name or brand logo">YourName</div>
+      <nav aria-label="Primary navigation">
+        <a href="#portfolio" tabindex="0">Portfolio</a>
+        <a href="#articles" tabindex="0">Articles</a>
+        <a href="#contact" tabindex="0">Contact</a>
+      </nav>
+    </div>
   </header>
 
   <main>
-    <section class="hero">
-      <h1>Hi, I'm YourName</h1>
-      <p>A Web Developer who builds accessible and modern websites.</p>
+    <section class="hero" aria-label="Introduction">
+      <h1>Hello, I'm YourName</h1>
+      <p>Creative professional specializing in design and development. Welcome to my portfolio and blog.</p>
     </section>
 
-    <section id="about" class="about">
-      <h2>About Me</h2>
-      <p>I specialize in creating responsive and accessible web applications using the latest technologies.</p>
-    </section>
-
-    <section id="projects" class="projects">
-      <h2>Projects</h2>
-      <div class="project-list">
-        <article class="project">
-          <h3>Project One</h3>
-          <p>This is a short description of my first project. It involves HTML, CSS, and JavaScript.</p>
+    <section id="portfolio" class="portfolio" aria-label="Portfolio projects">
+      <h2>My Portfolio</h2>
+      <div class="portfolio-grid">
+        <!-- Portfolio items here -->
+        <!-- Contoh satu item -->
+        <article class="portfolio-item" tabindex="0" aria-label="Project: Modern Website Design">
+          <img class="portfolio-image" src="https://example.com/image.png" alt="Screenshot of project"/>
+          <div class="portfolio-content">
+            <h3 class="portfolio-title">Modern Website Design</h3>
+            <p class="portfolio-description">A sleek, responsive website built with modern CSS and JavaScript to showcase creative works.</p>
+            <a href="https://example.com" target="_blank" class="portfolio-link">
+              View Project
+              <svg ...></svg>
+            </a>
+          </div>
         </article>
-
-        <article class="project">
-          <h3>Project Two</h3>
-          <p>A responsive web application designed for real-time collaboration.</p>
-        </article>
+        <!-- Tambah lainnya di sini -->
       </div>
     </section>
 
-    <section id="articles" class="articles" aria-label="Articles and blog posts">
+    <section id="articles" class="articles" aria-label="Articles section">
       <h2>Latest Articles</h2>
       <div class="articles-list">
-        <article class="article-preview">
-          <h3>The Future of Web Design</h3>
-          <p>Explore the emerging trends shaping the next generation of web experiences, from motion UI to AI-driven personalization.</p>
-          <a href="https://example.com/articles/future-web-design" target="_blank">Read More</a>
-        </article>
-
-        <article class="article-preview">
-          <h3>Building Accessible Web Applications</h3>
-          <p>Learn how to make your websites and apps inclusive for all users by following accessibility best practices and guidelines.</p>
-          <a href="https://example.com/articles/accessible-web-apps" target="_blank">Read More</a>
-        </article>
-
-        <article class="article-preview">
-          <h3>Tips for UI/UX Designers</h3>
-          <p>Discover practical advice and insights to improve your design workflow, from prototyping to usability testing.</p>
-          <a href="https://example.com/articles/uiux-tips" target="_blank">Read More</a>
-        </article>
+        <!-- Article previews here -->
       </div>
-    </section>
-
-    <section id="contact" class="contact">
-      <h2>Contact Me</h2>
-      <p>You can reach me via email at <a href="mailto:yourname@example.com">yourname@example.com</a>.</p>
     </section>
   </main>
 
   <footer>
-    <p>&copy; 2025 YourName. All rights reserved.</p>
+    &copy; 2025 YourName. All rights reserved.
   </footer>
 
-  <script src="script.js"></script>
+  <!-- <script src="script.js"></script> Jika kamu pakai JS -->
 </body>
 </html>
